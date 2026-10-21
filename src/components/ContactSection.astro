@@ -1,0 +1,130 @@
+---
+import Icon from './Icon.astro';
+import SectionHeader from './SectionHeader.astro';
+import ContactForm from './ContactForm.astro';
+import SocialLinks from './SocialLinks.astro';
+
+interface Social {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+interface Props {
+  contact: {
+    number: string;
+    title: string;
+    label: string;
+    statement: string[];
+    email: string;
+    socials: Social[];
+    form: {
+      name: string;
+      namePlaceholder: string;
+      email: string;
+      emailPlaceholder: string;
+      message: string;
+      messagePlaceholder: string;
+      submit: string;
+      subjectPrefix: string;
+    };
+  };
+  externalLabel: string;
+}
+
+const { contact, externalLabel } = Astro.props;
+---
+
+<section class="section contact" id="contact">
+  <div class="container">
+    <SectionHeader number={contact.number} title={contact.title} label={contact.label} />
+
+    <div class="contact__grid">
+      <div class="contact__lead reveal">
+        <p class="contact__statement">
+          {contact.statement.map((line) => <span>{line}</span>)}
+        </p>
+
+        <a class="contact__email" href={`mailto:${contact.email}`}>
+          <span>{contact.email}</span>
+          <Icon name="arrow-up-right" size={15} />
+        </a>
+
+        <SocialLinks socials={contact.socials} externalLabel={externalLabel} />
+      </div>
+
+      <div class="contact__form-wrap reveal" style="--reveal-delay: 80ms;">
+        <ContactForm email={contact.email} form={contact.form} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  .contact__statement {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(38px, 4.5vw, 58px);
+    font-weight: 700;
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+    color: var(--text);
+    max-width: 100%;
+  }
+
+  .contact__email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rust);
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--rust);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .contact__email:hover {
+    color: var(--rust-hover);
+    border-color: var(--rust-hover);
+  }
+
+  .contact__email :global(.icon) {
+    transition: transform 0.25s ease;
+  }
+
+  .contact__email:hover :global(.icon) {
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 900px) {
+    .contact__grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+
+    .contact__statement {
+      max-width: 100%;
+    }
+
+    .contact__email {
+      margin-top: 22px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .contact__email {
+      font-size: 15px;
+      word-break: break-word;
+    }
+  }
+</style>

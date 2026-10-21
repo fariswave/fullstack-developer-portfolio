@@ -1,0 +1,88 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  name: string;
+  icon: string;
+  index?: number;
+}
+
+const { name, icon, index = 0 } = Astro.props;
+const isLetterMark = icon === 'ts' || icon === 'js';
+const letter = icon === 'ts' ? 'TS' : 'JS';
+---
+
+<li
+  class="skill-card reveal"
+  style={`--reveal-delay: ${Math.min(index, 10) * 35}ms;`}
+>
+  <span class="skill-card__icon" aria-hidden="true">
+    {isLetterMark ? <span class="skill-card__letters">{letter}</span> : <Icon name={icon} size={19} />}
+  </span>
+  <span class="skill-card__name">{name}</span>
+</li>
+
+<style>
+  .skill-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 19px 18px;
+    background: var(--surface);
+    border-radius: 3px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .skill-card:hover {
+    background: var(--surface-strong);
+    transform: translateY(-2px);
+  }
+
+  .skill-card__icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 1px solid var(--text);
+    border-radius: 7px;
+    color: var(--text);
+  }
+
+  .skill-card__letters {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .skill-card__name {
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+
+  @media (max-width: 560px) {
+    .skill-card {
+      gap: 11px;
+      padding: 15px 13px;
+    }
+
+    .skill-card__icon {
+      width: 33px;
+      height: 33px;
+      border-radius: 6px;
+    }
+
+    .skill-card__icon :global(.icon) {
+      width: 17px;
+      height: 17px;
+    }
+
+    .skill-card__name {
+      font-size: 13px;
+    }
+  }
+</style>

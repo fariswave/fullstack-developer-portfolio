@@ -1,0 +1,140 @@
+---
+import Icon from './Icon.astro';
+import ProjectArt from './ProjectArt.astro';
+
+interface Props {
+  project: {
+    kind: 'defbloc' | 'tyma';
+    name: string;
+    description: string;
+    tech: string[];
+    demo: string;
+    repo: string;
+    art: Record<string, unknown>;
+  };
+  index?: number;
+}
+
+const { project, index = 0 } = Astro.props;
+---
+
+<article
+  class="project-card reveal"
+  style={`--reveal-delay: ${index * 90}ms;`}
+>
+  <ProjectArt kind={project.kind} art={project.art} />
+
+  <div class="project-card__body">
+    <h3 class="project-card__title">{project.name}</h3>
+    <p class="project-card__description">{project.description}</p>
+
+    <ul class="project-card__tech">
+      {project.tech.map((item) => <li>{item}</li>)}
+    </ul>
+
+    {/* TODO: isi URL demo & repo di src/data/{en,id}.json */}
+    <div class="project-card__actions">
+      {
+        project.demo ? (
+          <a class="btn btn--ghost" href={project.demo}>
+            <span>Demo</span>
+            <Icon name="arrow-up-right" size={16} />
+          </a>
+        ) : (
+          <span class="btn btn--ghost" data-placeholder="true">
+            <span>Demo</span>
+            <Icon name="arrow-up-right" size={16} />
+          </span>
+        )
+      }
+      {
+        project.repo ? (
+          <a class="btn btn--ghost" href={project.repo}>
+            <span>Repo</span>
+            <Icon name="github" size={16} />
+          </a>
+        ) : (
+          <span class="btn btn--ghost" data-placeholder="true">
+            <span>Repo</span>
+            <Icon name="github" size={16} />
+          </span>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card__body {
+    padding-top: 22px;
+  }
+
+  .project-card__title {
+    font-size: clamp(22px, 2.1vw, 27px);
+    letter-spacing: -0.032em;
+    line-height: 1.15;
+  }
+
+  .project-card__description {
+    margin-top: 9px;
+    font-size: 15px;
+    line-height: 1.68;
+    color: var(--text-soft);
+    max-width: 52ch;
+  }
+
+  .project-card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+  }
+
+  .project-card__tech li {
+    padding: 4px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  .project-card__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .project-card__actions .btn {
+    padding: 11px 20px;
+    font-size: 14px;
+  }
+
+  .project-card:hover :global(.defbloc-window),
+  .project-card:hover :global(.tyma-window) {
+    transform: translateY(-4px);
+  }
+
+  .project-card__actions [data-placeholder] {
+    cursor: default;
+  }
+
+  @media (max-width: 560px) {
+    .project-card__body {
+      padding-top: 18px;
+    }
+
+    .project-card__tech {
+      margin-top: 14px;
+    }
+
+    .project-card__actions {
+      margin-top: 18px;
+    }
+
+    .project-card__actions .btn {
+      flex: 1;
+    }
+  }
+</style>

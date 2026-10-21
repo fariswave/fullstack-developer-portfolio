@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+
+interface Social {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+interface Props {
+  socials: Social[];
+  externalLabel: string;
+}
+
+const { socials, externalLabel } = Astro.props;
+---
+
+<ul class="social-links">
+  {
+    socials.map((social) => (
+      <li>
+        {social.href ? (
+          <a
+            class="social-links__item"
+            href={social.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={`${social.label} ${externalLabel}`}
+          >
+            <Icon name={social.icon} size={16} />
+            <span>{social.label}</span>
+            <Icon name="arrow-up-right" size={14} />
+          </a>
+        ) : (
+          <span class="social-links__item" data-placeholder="true">
+            <Icon name={social.icon} size={16} />
+            <span>{social.label}</span>
+            <Icon name="arrow-up-right" size={14} />
+          </span>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+    margin-top: 26px;
+  }
+
+  .social-links__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.2s ease;
+  }
+
+  .social-links__item :global(.icon:last-child) {
+    color: var(--rust);
+    transition: transform 0.25s ease;
+  }
+
+  .social-links__item:hover {
+    color: var(--rust);
+  }
+
+  .social-links__item:hover :global(.icon:last-child) {
+    transform: translate(2px, -2px);
+  }
+
+  .social-links [data-placeholder] {
+    cursor: default;
+  }
+</style>

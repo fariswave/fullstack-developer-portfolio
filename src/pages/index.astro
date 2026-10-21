@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import AboutSection from '../components/AboutSection.astro';
+import SkillsSection from '../components/SkillsSection.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+import EducationSection from '../components/EducationSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import StorySection from '../components/StorySection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import content from '../data/en.json';
+---
+
+<BaseLayout
+  lang="en"
+  title="Faris Karami — Full-Stack Developer"
+  description="Portfolio of Faris Karami, an IT Support & QA specialist in Indonesia working toward full-stack development."
+  skipLabel={content.ui.skip}
+>
+  <Header lang="en" nav={content.nav} ui={content.ui} />
+
+  <main id="main">
+    <Hero hero={content.hero} />
+    <AboutSection about={content.about} />
+    <SkillsSection skills={content.skills} />
+    <ExperienceSection experience={content.experience} />
+    <EducationSection education={content.education} />
+    <ProjectsSection projects={content.projects} />
+    <StorySection story={content.story} />
+    <ContactSection contact={content.contact} externalLabel={content.ui.external} />
+  </main>
+
+  <Footer footer={content.footer} />
+</BaseLayout>

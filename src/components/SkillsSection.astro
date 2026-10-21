@@ -1,0 +1,44 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import SkillCard from './SkillCard.astro';
+
+interface Skill {
+  name: string;
+  icon: string;
+}
+
+interface Props {
+  skills: {
+    number: string;
+    title: string;
+    label: string;
+    items: Skill[];
+  };
+}
+
+const { skills } = Astro.props;
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <SectionHeader number={skills.number} title={skills.title} label={skills.label} />
+
+    <ul class="skills-grid">
+      {skills.items.map((skill, index) => <SkillCard {...skill} index={index} />)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  @media (max-width: 860px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

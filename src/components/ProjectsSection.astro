@@ -1,0 +1,53 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  projects: {
+    number: string;
+    title: string;
+    label: string;
+    items: Array<{
+      kind: 'defbloc' | 'tyma';
+      name: string;
+      description: string;
+      tech: string[];
+      demo: string;
+      repo: string;
+      art: Record<string, unknown>;
+    }>;
+  };
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <SectionHeader
+      number={projects.number}
+      title={projects.title}
+      label={projects.label}
+    />
+
+    <div class="projects-grid">
+      {projects.items.map((project, index) => <ProjectCard project={project} index={index} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(24px, 3.5vw, 42px);
+    align-items: start;
+  }
+
+  @media (max-width: 760px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 38px;
+    }
+  }
+</style>

@@ -1,0 +1,462 @@
+---
+import Icon from './Icon.astro';
+
+interface DefblocArt {
+  label: string;
+  wordmark: string;
+  meta: string;
+  headline: string[];
+}
+
+interface TymaRow {
+  tone: 'soon' | 'fresh';
+  status: string;
+}
+
+interface TymaArt {
+  label: string;
+  brand: string;
+  title: string;
+  colA: string;
+  colB: string;
+  rows: TymaRow[];
+}
+
+interface Props {
+  kind: 'defbloc' | 'tyma';
+  art: DefblocArt | TymaArt;
+}
+
+const { kind, art } = Astro.props;
+const defbloc = kind === 'defbloc' ? (art as DefblocArt) : null;
+const tyma = kind === 'tyma' ? (art as TymaArt) : null;
+---
+
+<div class:list={['project-art', `project-art--${kind}`]} aria-hidden="true">
+  <div class="project-art__head">
+    <span>{art.label}</span>
+    <Icon name="arrow-up-right" size={16} />
+  </div>
+
+  {
+    defbloc && (
+      <div class="defbloc-window">
+        <div class="mock-bar" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="defbloc-window__inner">
+          <div class="defbloc-top">
+            <span class="defbloc-wordmark">{defbloc.wordmark}</span>
+            <span class="defbloc-meta">{defbloc.meta}</span>
+          </div>
+          <div class="defbloc-main">
+            <div class="defbloc-copy">
+              <p class="defbloc-headline">
+                {defbloc.headline.map((line) => <span>{line}</span>)}
+              </p>
+              <span class="defbloc-rule" aria-hidden="true"></span>
+              <span class="defbloc-rule defbloc-rule--short" aria-hidden="true"></span>
+            </div>
+            <div class="defbloc-vinyl" aria-hidden="true">
+              <span class="defbloc-vinyl__disc">
+                <span class="defbloc-vinyl__center"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    tyma && (
+      <div class="tyma-window">
+        <div class="mock-bar mock-bar--tyma" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="tyma-window__inner">
+          <aside class="tyma-side" aria-hidden="true">
+            <span class="tyma-brand">{tyma.brand}</span>
+            <span class="tyma-side__icons">
+              <Icon name="layers" size={12} />
+              <Icon name="cube" size={12} />
+              <Icon name="calendar" size={12} />
+            </span>
+          </aside>
+          <div class="tyma-main">
+            <div class="tyma-title">
+              <span>{tyma.title}</span>
+              <Icon name="cube" size={14} />
+            </div>
+            <div class="tyma-cols" aria-hidden="true">
+              <span>{tyma.colA}</span>
+              <span>{tyma.colB}</span>
+            </div>
+            <div class="tyma-rows" aria-hidden="true">
+              {tyma.rows.map((row) => (
+                <div class="tyma-row">
+                  <span class:list={['tyma-dot', `tyma-dot--${row.tone}`]}></span>
+                  <span class="tyma-bar"></span>
+                  <span class:list={['tyma-status', `tyma-status--${row.tone}`]}>
+                    {row.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .project-art {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    aspect-ratio: 1.5;
+    padding: 18px 20px 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: background-color 0.35s ease;
+  }
+
+  .project-art--defbloc {
+    background: var(--art-def-bg);
+  }
+
+  .project-art--tyma {
+    background: var(--art-tyma-bg);
+  }
+
+  .project-art__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.72;
+    flex-shrink: 0;
+  }
+
+  /* Browser chrome shared by both mockups */
+  .mock-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 9px;
+    flex-shrink: 0;
+  }
+
+  .mock-bar span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(244, 238, 224, 0.35);
+  }
+
+  /* ---------- Defbloc ---------- */
+  .defbloc-window {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    background: var(--def-window);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.35s ease;
+  }
+
+  .defbloc-window__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    padding: 8px 16px 14px;
+    color: #f1ead9;
+  }
+
+  .defbloc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .defbloc-wordmark {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  }
+
+  .defbloc-meta {
+    font-size: clamp(5.5px, 0.55vw, 7px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    white-space: nowrap;
+  }
+
+  .defbloc-main {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    padding-top: 6px;
+  }
+
+  .defbloc-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .defbloc-headline {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(24px, 2.9vw, 40px);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    color: var(--rust);
+  }
+
+  .defbloc-rule {
+    display: block;
+    width: 76%;
+    height: 1px;
+    background: rgba(241, 234, 217, 0.22);
+  }
+
+  .defbloc-rule--short {
+    width: 46%;
+  }
+
+  .defbloc-vinyl {
+    display: grid;
+    place-items: center;
+    width: clamp(46px, 6.8vw, 88px);
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    background: var(--rust);
+    transform: translateY(2px);
+  }
+
+  .defbloc-vinyl__disc {
+    display: grid;
+    place-items: center;
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #1c1a17;
+  }
+
+  .defbloc-vinyl__center {
+    display: block;
+    width: 22%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--art-def-bg);
+  }
+
+  /* ---------- TYMA ---------- */
+  .tyma-window {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    background: var(--tyma-window);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.35s ease;
+  }
+
+  .mock-bar--tyma {
+    padding: 6px 8px;
+  }
+
+  .mock-bar--tyma span {
+    width: 3.5px;
+    height: 3.5px;
+    background: var(--green);
+    opacity: 0.55;
+  }
+
+  .tyma-window__inner {
+    display: grid;
+    grid-template-columns: 19% 1fr;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .tyma-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 6px 12px;
+    background: var(--tyma-side);
+  }
+
+  .tyma-brand {
+    font-size: clamp(9px, 1vw, 12px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--green);
+  }
+
+  .tyma-side__icons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--tyma-ink);
+    opacity: 0.42;
+  }
+
+  .tyma-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 6px 14px 12px;
+    color: var(--tyma-ink);
+  }
+
+  .tyma-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: clamp(11px, 1.25vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .tyma-title :global(.icon) {
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .tyma-cols {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 12px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--line);
+    font-size: clamp(5px, 0.55vw, 7.5px);
+    letter-spacing: 0.09em;
+    opacity: 0.55;
+  }
+
+  .tyma-rows {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .tyma-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(5px, 0.8vw, 10px);
+    flex: 1 1 0;
+    max-height: 72px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tyma-dot {
+    width: clamp(7px, 0.75vw, 10px);
+    aspect-ratio: 1;
+    border-radius: 1px;
+  }
+
+  .tyma-dot--soon {
+    background: var(--rust);
+  }
+
+  .tyma-dot--fresh {
+    background: var(--green);
+  }
+
+  .tyma-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--tyma-bar);
+  }
+
+  .tyma-status {
+    font-size: clamp(5px, 0.55vw, 7.5px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .tyma-status--soon {
+    color: var(--status-soon);
+  }
+
+  .tyma-status--fresh {
+    color: var(--status-fresh);
+  }
+
+  @media (max-width: 1100px) {
+    .defbloc-meta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .project-art {
+      aspect-ratio: 1.65;
+    }
+
+    .defbloc-headline {
+      font-size: clamp(26px, 4.6vw, 38px);
+    }
+
+    .defbloc-meta {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .project-art {
+      aspect-ratio: 1.32;
+      padding: 14px 15px 16px;
+      gap: 10px;
+    }
+
+    .defbloc-headline {
+      font-size: clamp(24px, 7.2vw, 32px);
+    }
+
+    .defbloc-meta {
+      display: none;
+    }
+
+    .tyma-window__inner {
+      grid-template-columns: 22% 1fr;
+    }
+
+    .tyma-side__icons {
+      gap: 7px;
+    }
+  }
+</style>

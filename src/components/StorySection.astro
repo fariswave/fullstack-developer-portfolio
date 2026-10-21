@@ -1,0 +1,172 @@
+---
+import Icon from './Icon.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface StoryMeta {
+  icon: string;
+  label: string;
+}
+
+interface Props {
+  story: {
+    number: string;
+    title: string;
+    label: string;
+    statement: string[];
+    meta: StoryMeta[];
+    paragraphs: string[];
+  };
+}
+
+const { story } = Astro.props;
+
+const wave = [10, 17, 24, 34, 21, 12, 28, 39, 31, 18, 25, 41, 33, 14, 29, 20, 37, 29, 16, 26, 38, 27, 18, 33, 13, 23, 36, 19, 28, 15];
+---
+
+<section class="section story" id="story">
+  <div class="container">
+    <SectionHeader number={story.number} title={story.title} label={story.label} />
+
+    <div class="story__grid">
+      <div class="story__aside reveal">
+        <p class="story__statement">
+          {story.statement.map((line) => <span>{line}</span>)}
+        </p>
+
+        <div class="story__wave" aria-hidden="true">
+          {wave.map((height) => <span style={`height: ${height}px;`}></span>)}
+        </div>
+
+        <ul class="story__meta">
+          {
+            story.meta.map((item) => (
+              <li>
+                <Icon name={item.icon} size={16} />
+                <span>{item.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="story__copy reveal" style="--reveal-delay: 80ms;">
+        {story.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    background: var(--surface);
+    transition: background-color 0.35s ease;
+  }
+
+  .story__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  .story__statement {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(29px, 3.2vw, 39px);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -0.038em;
+    color: var(--green);
+  }
+
+  .story__wave {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 46px;
+    margin-top: 28px;
+  }
+
+  .story__wave span {
+    display: block;
+    width: 2.5px;
+    border-radius: 2px;
+    background: var(--green);
+    opacity: 0.75;
+  }
+
+  .story__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-top: 26px;
+  }
+
+  .story__meta li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  .story__meta :global(.icon) {
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .story__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 4px;
+  }
+
+  .story__copy p {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    max-width: 66ch;
+  }
+
+  @media (max-width: 900px) {
+    .story__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .story__wave {
+      margin-top: 22px;
+    }
+
+    .story__meta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 22px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .story__copy {
+      gap: 16px;
+      padding-top: 0;
+    }
+
+    .story__copy p {
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+
+    .story__wave {
+      height: 38px;
+    }
+
+    .story__wave span {
+      width: 2px;
+    }
+  }
+</style>

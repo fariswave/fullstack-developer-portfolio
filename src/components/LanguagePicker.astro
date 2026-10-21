@@ -1,0 +1,76 @@
+---
+interface Props {
+  lang: 'en' | 'id';
+  label: string;
+}
+
+const { lang, label } = Astro.props;
+---
+
+<div class="lang-switch" role="group" aria-label={label}>
+  <a
+    href="/id/"
+    class:list={['lang-switch__option', { 'is-active': lang === 'id' }]}
+    data-set-lang="id"
+    aria-current={lang === 'id' ? 'true' : undefined}
+  >
+    ID
+  </a>
+  <a
+    href="/"
+    class:list={['lang-switch__option', { 'is-active': lang === 'en' }]}
+    data-set-lang="en"
+    aria-current={lang === 'en' ? 'true' : undefined}
+  >
+    EN
+  </a>
+</div>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    line-height: 1;
+  }
+
+  .lang-switch__option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 30px;
+    padding-inline: 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-soft);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .lang-switch__option:hover {
+    color: var(--text);
+  }
+
+  .lang-switch__option.is-active {
+    background: var(--text);
+    color: var(--bg);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll('[data-set-lang]').forEach((link) => {
+      link.addEventListener('click', () => {
+        try {
+          localStorage.setItem('portfolio-lang', link.dataset.setLang);
+        } catch (error) {
+          /* ignore unavailable storage */
+        }
+      });
+    });
+  })();
+</script>

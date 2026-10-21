@@ -1,0 +1,178 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  email: string;
+  form: {
+    name: string;
+    namePlaceholder: string;
+    email: string;
+    emailPlaceholder: string;
+    message: string;
+    messagePlaceholder: string;
+    submit: string;
+    subjectPrefix: string;
+    status: string;
+  };
+}
+
+const { email, form } = Astro.props;
+---
+
+<form
+  class="contact-form"
+  id="contact-form"
+  data-email={email}
+  data-subject-prefix={form.subjectPrefix}
+  data-status={form.status}
+>
+  <div class="contact-form__row">
+    <label class="field">
+      <span class="field__label">{form.name}</span>
+      <input
+        class="field__input"
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder={form.namePlaceholder}
+      />
+    </label>
+
+    <label class="field">
+      <span class="field__label">{form.email}</span>
+      <input
+        class="field__input"
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder={form.emailPlaceholder}
+      />
+    </label>
+  </div>
+
+  <label class="field">
+    <span class="field__label">{form.message}</span>
+    <textarea
+      class="field__input field__input--area"
+      name="message"
+      required
+      rows="5"
+      placeholder={form.messagePlaceholder}></textarea>
+  </label>
+
+  <button class="btn btn--solid contact-form__submit" type="submit">
+    <span>{form.submit}</span>
+    <Icon name="arrow-up-right" size={17} />
+  </button>
+
+  <p class="sr-only" id="contact-form-status" role="status"></p>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .field__label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--text);
+  }
+
+  .field__input {
+    width: 100%;
+    padding: 11px 13px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-line);
+    border-radius: 3px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--text);
+    transition: border-color 0.2s ease, background-color 0.3s ease;
+  }
+
+  .field__input::placeholder {
+    color: var(--text-faint);
+    opacity: 1;
+  }
+
+  .field__input:hover {
+    border-color: var(--line-strong);
+  }
+
+  .field__input:focus {
+    outline: none;
+    border-color: var(--text);
+    box-shadow: 0 0 0 1px var(--text);
+  }
+
+  .field__input--area {
+    resize: vertical;
+    min-height: 132px;
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 560px) {
+    .contact-form__row {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .contact-form__submit {
+      width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const status = document.getElementById('contact-form-status');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const sender = String(data.get('email') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      const email = form.dataset.email;
+      if (!email) return;
+
+      const subject = `${form.dataset.subjectPrefix} ${name}`;
+      const body = `${message}\n\n— ${name} (${sender})`;
+      const href = `mailto:${email}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      if (status) {
+        status.textContent = form.dataset.status || '';
+      }
+
+      window.location.href = href;
+    });
+  })();
+</script>

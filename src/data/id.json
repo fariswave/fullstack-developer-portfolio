@@ -1,0 +1,156 @@
+{
+  "ui": {
+    "language": "Pilih bahasa",
+    "menuOpen": "Buka menu navigasi",
+    "menuClose": "Tutup menu navigasi",
+    "switchToLight": "Aktifkan tema terang",
+    "switchToDark": "Aktifkan tema gelap",
+    "external": "(membuka tautan di tab baru)",
+    "skip": "Langsung ke konten"
+  },
+  "nav": [
+    { "id": "about", "label": "About" },
+    { "id": "skills", "label": "Skills" },
+    { "id": "experience", "label": "Experience" },
+    { "id": "education", "label": "Education" },
+    { "id": "projects", "label": "Projects" },
+    { "id": "story", "label": "Story" },
+    { "id": "contact", "label": "Contact" }
+  ],
+  "hero": {
+    "eyebrow": "INDONESIA / PORTFOLIO",
+    "firstName": "Faris",
+    "lastName": "Karami",
+    "title": "Full-Stack Developer",
+    "workbenchLabel": "MEJA KERJA PRIBADI",
+    "path": "~/faris/personal-projects",
+    "prompt": "$",
+    "command": "belajar → bangun → ulangi"
+  },
+  "about": {
+    "number": "01",
+    "eyebrow": "TENTANG SAYA",
+    "title": "Berangkat dari rasa ingin tahu.",
+    "body": "Halo! Saya Faris, sehari-hari bekerja sebagai IT Support sekaligus tester, jadi saya terbiasa menangani masalah teknis dan memastikan aplikasi berjalan dengan baik. Tujuan saya adalah menjadi Fullstack Developer, dan saya terus belajar mengembangkan kemampuan di sisi frontend maupun backend. Di waktu senggang, saya suka mengerjakan project pribadi yang menyenangkan — buat saya, ngoding itu seru meski kadang menantang.",
+    "email": "karamifaris@gmail.com"
+  },
+  "skills": {
+    "number": "02",
+    "title": "Bekal membangun.",
+    "label": "KEAHLIAN / TEKNOLOGI",
+    "items": [
+      { "name": "TypeScript", "icon": "ts" },
+      { "name": "JavaScript (ES6+)", "icon": "js" },
+      { "name": "HTML5/CSS3", "icon": "html5" },
+      { "name": "Next.js", "icon": "nextjs" },
+      { "name": "Node.js", "icon": "node" },
+      { "name": "SQL", "icon": "database" },
+      { "name": "Git/GitHub", "icon": "git" },
+      { "name": "Linux", "icon": "linux" },
+      { "name": "PHP", "icon": "php" },
+      { "name": "WordPress", "icon": "wordpress" },
+      { "name": "Astro", "icon": "astro" }
+    ]
+  },
+  "experience": {
+    "number": "03",
+    "title": "Pengalaman di lapangan.",
+    "label": "PENGALAMAN",
+    "period": "2024–sekarang",
+    "role": "IT Support & QA",
+    "company": "Kementerian ATR/BPN",
+    "items": [
+      "Memberikan dukungan teknis untuk aplikasi ATR BPN yang digunakan secara nasional di seluruh Indonesia.",
+      "Menangani dan menyelesaikan kendala teknis pengguna lintas daerah, mulai dari troubleshooting aplikasi hingga instalasi perangkat lunak.",
+      "Melakukan pengujian aplikasi ATR BPN untuk memastikan kualitas sebelum rilis, termasuk penulisan test case dan pelaporan bug.",
+      "Membantu pengujian aplikasi pemetaan Tataletak dan mendokumentasikan hasilnya agar tim developer dapat memperbaiki issue dengan cepat."
+    ]
+  },
+  "education": {
+    "number": "04",
+    "title": "Pendidikan.",
+    "label": "LATAR AKADEMIK",
+    "text": "Sarjana Sistem Informasi, ITB STIKOM Bali"
+  },
+  "projects": {
+    "number": "05",
+    "title": "Dari ide, jadi nyata.",
+    "label": "PROYEK PRIBADI",
+    "items": [
+      {
+        "kind": "defbloc",
+        "name": "Defbloc Store",
+        "description": "E-commerce untuk label hip hop indie Defbloc: beli merch, album, lihat roster artis, dan baca artikel.",
+        "tech": ["WordPress", "WooCommerce", "PHP"],
+        "demo": "",
+        "repo": "",
+        "art": {
+          "label": "STUDI ANTARMUKA / ILUSTRASI",
+          "wordmark": "DEFBLOC",
+          "meta": "MERCH / MUSIK / ARTIS / ARTIKEL",
+          "headline": ["INDEPENDEN.", "HIP HOP."]
+        }
+      },
+      {
+        "kind": "tyma",
+        "name": "TYMA Kitchen Inventory",
+        "description": "Aplikasi manajemen inventory dapur dengan tampilan expiry date untuk memantau bahan makanan.",
+        "tech": ["Next.js", "SQLite"],
+        "demo": "",
+        "repo": "",
+        "art": {
+          "label": "STUDI ANTARMUKA / ILUSTRASI",
+          "brand": "tyma.",
+          "title": "Inventory dapur",
+          "colA": "BAHAN MAKANAN",
+          "colB": "KEDALUWARSA",
+          "rows": [
+            { "tone": "soon", "status": "CEK SEGERA" },
+            { "tone": "fresh", "status": "SEGAR" },
+            { "tone": "fresh", "status": "SEGAR" }
+          ]
+        }
+      }
+    ]
+  },
+  "story": {
+    "number": "06",
+    "title": "Di balik baris kode.",
+    "label": "CERITA SAYA",
+    "statement": ["Otodidak.", "Terus bergerak."],
+    "meta": [
+      { "icon": "headphones", "label": "HIP HOP" },
+      { "icon": "gamepad", "label": "GAME & PROYEK PRIBADI" }
+    ],
+    "paragraphs": [
+      "Saya memulai perjalanan di dunia IT secara otodidak — belajar sambil langsung praktik, yang sejak awal membiasakan saya cepat menangkap hal baru. Keseharian saya sebagai IT Support & QA menajamkan insting problem-solving: setiap kendala pengguna adalah teka-teki yang harus dipecahkan, dan memahami di mana aplikasi 'sakit' membuat saya semakin ingin membangunnya dengan benar. Itulah alasan tujuan besar saya: menjadi Fullstack Developer dan pada akhirnya bisa membangun produk sendiri.",
+      "Di waktu senggang, saya mengerjakan project pribadi yang saya sukai. Di luar ngoding, saya juga menikmati bermain game dan musik hip hop. Bagi saya, project terbaik lahir dari hal yang benar-benar saya sukai, dan tak ada cara belajar yang lebih menyenangkan daripada itu."
+    ]
+  },
+  "contact": {
+    "number": "07",
+    "title": "Mari terhubung.",
+    "label": "KONTAK",
+    "statement": ["Hal baik dimulai", "dari obrolan."],
+    "email": "karamifaris@gmail.com",
+    "socials": [
+      { "label": "GitHub", "href": "", "icon": "github" },
+      { "label": "LinkedIn", "href": "", "icon": "linkedin" }
+    ],
+    "form": {
+      "name": "Nama",
+      "namePlaceholder": "Nama kamu",
+      "email": "Email",
+      "emailPlaceholder": "kamu@contoh.com",
+      "message": "Pesan",
+      "messagePlaceholder": "Apa yang ingin kamu ceritakan?",
+      "submit": "Kirim pesan",
+      "subjectPrefix": "Pesan portfolio dari",
+      "status": "Draf email dibuka di aplikasi email kamu."
+    }
+  },
+  "footer": {
+    "copyright": "© Faris Karami",
+    "mark": "{fk}"
+  }
+}

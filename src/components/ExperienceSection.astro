@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  experience: {
+    number: string;
+    title: string;
+    label: string;
+    period: string;
+    role: string;
+    company: string;
+    items: string[];
+  };
+}
+
+const { experience } = Astro.props;
+---
+
+<section class="section" id="experience">
+  <div class="container">
+    <SectionHeader
+      number={experience.number}
+      title={experience.title}
+      label={experience.label}
+    />
+
+    <div class="experience__grid">
+      <div class="experience__meta reveal">
+        <p class="experience__period">{experience.period}</p>
+        <h3 class="experience__role">{experience.role}</h3>
+        <p class="experience__company">{experience.company}</p>
+      </div>
+
+      <ul class="experience__list reveal" style="--reveal-delay: 80ms;">
+        {
+          experience.items.map((item) => (
+            <li class="experience__item">
+              <Icon name="arrow-down-right" size={18} class="experience__arrow" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(40px, 6vw, 90px);
+    align-items: start;
+  }
+
+  .experience__period {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--rust);
+    letter-spacing: 0.01em;
+    margin-bottom: 12px;
+  }
+
+  .experience__role {
+    font-size: clamp(25px, 2.6vw, 31px);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+
+  .experience__company {
+    margin-top: 7px;
+    font-size: 16px;
+    color: var(--text-soft);
+  }
+
+  .experience__list {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    padding-top: 2px;
+  }
+
+  .experience__item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 8px;
+    align-items: start;
+    font-size: 15.5px;
+    line-height: 1.72;
+    color: var(--text-soft);
+  }
+
+  .experience__item :global(.experience__arrow) {
+    margin-top: 4px;
+    color: var(--rust);
+  }
+
+  @media (max-width: 900px) {
+    .experience__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .experience__item {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .experience__list {
+      gap: 15px;
+    }
+
+    .experience__item {
+      grid-template-columns: 22px 1fr;
+      font-size: 14.5px;
+    }
+  }
+</style>

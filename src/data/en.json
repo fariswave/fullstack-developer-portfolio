@@ -1,0 +1,156 @@
+{
+  "ui": {
+    "language": "Select language",
+    "menuOpen": "Open navigation menu",
+    "menuClose": "Close navigation menu",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "external": "(opens link in a new tab)",
+    "skip": "Skip to content"
+  },
+  "nav": [
+    { "id": "about", "label": "About" },
+    { "id": "skills", "label": "Skills" },
+    { "id": "experience", "label": "Experience" },
+    { "id": "education", "label": "Education" },
+    { "id": "projects", "label": "Projects" },
+    { "id": "story", "label": "Story" },
+    { "id": "contact", "label": "Contact" }
+  ],
+  "hero": {
+    "eyebrow": "INDONESIA / PORTFOLIO",
+    "firstName": "Faris",
+    "lastName": "Karami",
+    "title": "Full-Stack Developer",
+    "workbenchLabel": "PERSONAL WORKBENCH",
+    "path": "~/faris/personal-projects",
+    "prompt": "$",
+    "command": "learn → build → repeat"
+  },
+  "about": {
+    "number": "01",
+    "eyebrow": "ABOUT ME",
+    "title": "It starts with curiosity.",
+    "body": "Hi! I'm Faris. I work as an IT Support specialist and tester, so I'm used to handling technical issues and making sure applications run well. My goal is to become a Fullstack Developer, and I keep learning to develop my skills on both the frontend and backend. In my spare time, I enjoy working on fun personal projects — to me, coding is exciting, even when it's challenging.",
+    "email": "karamifaris@gmail.com"
+  },
+  "skills": {
+    "number": "02",
+    "title": "Tools of the trade",
+    "label": "SKILLS / TECHNOLOGIES",
+    "items": [
+      { "name": "TypeScript", "icon": "ts" },
+      { "name": "JavaScript (ES6+)", "icon": "js" },
+      { "name": "HTML5/CSS3", "icon": "html5" },
+      { "name": "Next.js", "icon": "nextjs" },
+      { "name": "Node.js", "icon": "node" },
+      { "name": "SQL", "icon": "database" },
+      { "name": "Git/GitHub", "icon": "git" },
+      { "name": "Linux", "icon": "linux" },
+      { "name": "PHP", "icon": "php" },
+      { "name": "WordPress", "icon": "wordpress" },
+      { "name": "Astro", "icon": "astro" }
+    ]
+  },
+  "experience": {
+    "number": "03",
+    "title": "Experience in practice.",
+    "label": "EXPERIENCE",
+    "period": "2024–present",
+    "role": "IT Support & QA",
+    "company": "Kementerian ATR/BPN",
+    "items": [
+      "Provide technical support for ATR BPN applications used nationwide across Indonesia.",
+      "Handle and resolve technical issues for users across regions, from application troubleshooting to software installation.",
+      "Test ATR BPN applications to ensure quality before release, including writing test cases and reporting bugs.",
+      "Help test the Tataletak mapping application and document the results so the development team can fix issues quickly."
+    ]
+  },
+  "education": {
+    "number": "04",
+    "title": "Education.",
+    "label": "ACADEMIC BACKGROUND",
+    "text": "Bachelor's in Information Systems, ITB STIKOM Bali"
+  },
+  "projects": {
+    "number": "05",
+    "title": "From idea to reality.",
+    "label": "PERSONAL PROJECTS",
+    "items": [
+      {
+        "kind": "defbloc",
+        "name": "Defbloc Store",
+        "description": "E-commerce for indie hip hop label Defbloc: shop for merch and albums, explore the artist roster, and read articles.",
+        "tech": ["WordPress", "WooCommerce", "PHP"],
+        "demo": "",
+        "repo": "",
+        "art": {
+          "label": "INTERFACE STUDY / ILLUSTRATION",
+          "wordmark": "DEFBLOC",
+          "meta": "MERCH / MUSIC / ARTISTS / JOURNAL",
+          "headline": ["INDEPENDENT.", "HIP HOP."]
+        }
+      },
+      {
+        "kind": "tyma",
+        "name": "TYMA Kitchen Inventory",
+        "description": "A kitchen inventory management app with an expiry-date view to keep track of food ingredients.",
+        "tech": ["Next.js", "SQLite"],
+        "demo": "",
+        "repo": "",
+        "art": {
+          "label": "INTERFACE STUDY / ILLUSTRATION",
+          "brand": "tyma.",
+          "title": "Kitchen inventory",
+          "colA": "INGREDIENTS",
+          "colB": "EXPIRY DATE",
+          "rows": [
+            { "tone": "soon", "status": "CHECK SOON" },
+            { "tone": "fresh", "status": "FRESH" },
+            { "tone": "fresh", "status": "FRESH" }
+          ]
+        }
+      }
+    ]
+  },
+  "story": {
+    "number": "06",
+    "title": "A little beyond the code.",
+    "label": "PERSONAL STORY",
+    "statement": ["Self-taught.", "Always learning."],
+    "meta": [
+      { "icon": "headphones", "label": "HIP HOP" },
+      { "icon": "gamepad", "label": "GAMES & PERSONAL PROJECTS" }
+    ],
+    "paragraphs": [
+      "I started my journey in IT as a self-taught learner — learning through hands-on practice, which helped me pick up new things quickly from the start. My day-to-day work in IT Support & QA sharpens my problem-solving instincts: every user issue is a puzzle to solve, and understanding where an application 'hurts' makes me want to build it properly even more. That's the reason behind my big goal: to become a Fullstack Developer and eventually build my own products.",
+      "In my spare time, I work on personal projects I enjoy. Beyond coding, I also enjoy playing games and hip hop music. For me, the best projects come from things I genuinely love, and there's no more enjoyable way to learn than that."
+    ]
+  },
+  "contact": {
+    "number": "07",
+    "title": "Get in touch.",
+    "label": "CONTACT",
+    "statement": ["Good things start", "with a hello."],
+    "email": "karamifaris@gmail.com",
+    "socials": [
+      { "label": "GitHub", "href": "", "icon": "github" },
+      { "label": "LinkedIn", "href": "", "icon": "linkedin" }
+    ],
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "Message",
+      "messagePlaceholder": "What would you like to share?",
+      "submit": "Send message",
+      "subjectPrefix": "Portfolio message from",
+      "status": "Email draft opened in your mail app."
+    }
+  },
+  "footer": {
+    "copyright": "© Faris Karami",
+    "mark": "{fk}"
+  }
+}
