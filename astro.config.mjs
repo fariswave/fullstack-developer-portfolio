@@ -1,5 +1,6 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: 'http://localhost:4321',
+  site: "https://fariswave.github.io",
+  base: "/fullstack-developer-portfolio",
 });
