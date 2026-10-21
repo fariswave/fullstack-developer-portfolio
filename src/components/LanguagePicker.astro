@@ -5,11 +5,14 @@ interface Props {
 }
 
 const { lang, label } = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 ---
 
 <div class="lang-switch" role="group" aria-label={label}>
   <a
-    href="/id/"
+    href={`${base}id/`}
     class:list={['lang-switch__option', { 'is-active': lang === 'id' }]}
     data-set-lang="id"
     aria-current={lang === 'id' ? 'true' : undefined}
@@ -17,7 +20,7 @@ const { lang, label } = Astro.props;
     ID
   </a>
   <a
-    href="/"
+    href={base}
     class:list={['lang-switch__option', { 'is-active': lang === 'en' }]}
     data-set-lang="en"
     aria-current={lang === 'en' ? 'true' : undefined}
